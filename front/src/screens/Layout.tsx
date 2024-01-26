@@ -7,7 +7,7 @@ import ApplicationBar from "../components/ApplicationBarComponent";
 function Layout() {
   return (
     <div className="Layout">
-      <Grid container direction="column" style={{ height: "100vh" }}>
+      <Grid container direction="column">
         <Grid item>
           <ApplicationBar />
         </Grid>

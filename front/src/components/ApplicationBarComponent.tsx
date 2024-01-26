@@ -54,7 +54,7 @@ function ApplicationBar() {
                 textDecoration: "none",
               }}
             >
-              LOGO1
+              LOGO
             </Typography>
 
             {/* Mobile Menu */}
@@ -115,7 +115,7 @@ function ApplicationBar() {
                 textDecoration: "none",
               }}
             >
-              LOGO2
+              LOGO
             </Typography>
 
             {/* Desktop Menu */}
