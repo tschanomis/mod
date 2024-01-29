@@ -35,7 +35,7 @@ function ApplicationBar() {
 
   return (
     <div className="ApplicationBar">
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Desktop Logo */}

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import { Grid } from "@mui/material";
 
-import ApplicationBar from "../components/ApplicationBarComponent";
+import ApplicationBar from "../components/ApplicationBar.component";
 
 function Layout() {
   return (

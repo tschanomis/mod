@@ -2,7 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Layout from "./screens/Layout";
 
-import ListComponent from "./components/ListComponent";
+import AppointementList from "./components/AppointementList.component";
+import StaffMemberList from "./components/StaffMemberList.component";
 
 import "./App.css";
 
@@ -13,11 +14,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <ListComponent />,
+        element: <AppointementList />,
       },
       {
         path: "staff-members",
-        element: <>staff-members</>,
+        element: <StaffMemberList />,
       },
       {
         path: "clients",
