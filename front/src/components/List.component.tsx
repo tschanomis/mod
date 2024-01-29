@@ -1,13 +1,9 @@
-import { AddCircle } from "@mui/icons-material";
-import {
-  Grid,
-  Card,
-  CardContent,
-  IconButton,
-  Dialog,
-  DialogTitle,
-} from "@mui/material";
 import { useState } from "react";
+
+import { AddCircle } from "@mui/icons-material";
+import { Grid, Card, CardContent, IconButton, Dialog } from "@mui/material";
+
+import AddItemDialogContent from "./AddItemDialogContent.component";
 
 function List({
   itemsType,
@@ -29,41 +25,27 @@ function List({
     { test: "test" },
     { test: "test" },
     { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
-    { test: "test" },
   ];
+
   console.log(itemsType);
   console.log(addItem);
 
-  const [openDialog, setOpenDialog] = useState(true);
-  const [contentDialog, setContentDialog] = useState<null | string>(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [contentDialog, setContentDialog] = useState<null | JSX.Element>(null);
 
-  const handleClickOpenDialog = (value: string) => {
+  const handleClickOpenDialog = (action: "add" | "update" | "delete") => {
+    let content: null | JSX.Element = null;
+    if (action === "add")
+      content = (
+        <AddItemDialogContent itemsType={itemsType} addItem={addItem} />
+      );
     setOpenDialog(true);
-    setContentDialog(value);
+    setContentDialog(content);
   };
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
+    setContentDialog(null);
   };
 
   return (
@@ -84,15 +66,12 @@ function List({
             <IconButton
               color="primary"
               size="large"
-              onClick={() => setOpenDialog(true)}
+              onClick={() => handleClickOpenDialog("add")}
             >
               <AddCircle fontSize="inherit" />
             </IconButton>
-            <Dialog
-              open={openDialog}
-              onClose={() => handleClickOpenDialog(itemsType)}
-            >
-              <DialogTitle>ajout de {itemsType}</DialogTitle>
+            <Dialog open={openDialog} onClose={handleCloseDialog}>
+              {contentDialog}
             </Dialog>
           </Grid>
         </Grid>

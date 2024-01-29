@@ -7,7 +7,7 @@ function StaffMemberList() {
 
   return (
     <div className="StaffMemberList">
-      <List itemsType="staffmemberlist" addItem={addStaffMember} />
+      <List itemsType="staffmember" addItem={addStaffMember} />
     </div>
   );
 }
