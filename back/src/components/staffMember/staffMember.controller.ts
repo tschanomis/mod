@@ -13,6 +13,17 @@ import { StaffMemberInterface } from "./staffMember.interface";
 
 const createStaffMember = async (req: Request, res: Response) => {
   try {
+    // TO DO
+    // const requiredFields= []
+    // create function
+    // return ?message && fields
+    const { firstname, lastname } = req.body;
+    if (!firstname || !lastname) {
+      res
+        .status(httpStatus.BAD_REQUEST)
+        .send({ message: "Missing firstname or lastname" });
+    }
+
     const staffMemberData: StaffMemberInterface = req.body;
     const newstaffMember: StaffMemberInterface =
       await createStaffMemberInService(staffMemberData);

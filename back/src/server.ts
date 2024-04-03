@@ -6,8 +6,6 @@ const port = 3000;
 sequelize
   .sync()
   .then(async () => {
-    const tableExists = await sequelize.getQueryInterface().showAllTables();
-    console.log(tableExists);
     app.listen(port, (): void => {
       return console.log(`Server listening at port ${port}`);
     });
