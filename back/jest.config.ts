@@ -5,7 +5,7 @@ const config: Config.InitialOptions = {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
-  moduleFileExtensions: ["ts", "json", "node"],
+  moduleFileExtensions: ["ts", "js"],
   testPathIgnorePatterns: ["/node_modules/", "/dist/"],
 };
 
