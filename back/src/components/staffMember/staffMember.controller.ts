@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 
 import httpStatus from "http-status";
 
+import { checkingRequiredFields } from "../../core/utils/checkingRequiredFields/checkingRequiredFields";
+
 import {
   createStaffMemberInService,
   readStaffMemberInService,
@@ -13,26 +15,27 @@ import { StaffMemberInterface } from "./staffMember.interface";
 
 const createStaffMember = async (req: Request, res: Response) => {
   try {
-    // TO DO
-    // const requiredFields= []
-    // create function
-    // return ?message && fields
-    const { firstname, lastname } = req.body;
-    if (!firstname || !lastname) {
-      res
+    const requiredFields = ["firstname", "lastname"];
+    const checkedRequiredFields = checkingRequiredFields(
+      requiredFields,
+      req.body
+    );
+
+    if (checkedRequiredFields) {
+      return res
         .status(httpStatus.BAD_REQUEST)
-        .send({ message: "Missing firstname or lastname" });
+        .send({ message: "Missing fields", errors: checkedRequiredFields });
     }
 
     const staffMemberData: StaffMemberInterface = req.body;
     const newstaffMember: StaffMemberInterface =
       await createStaffMemberInService(staffMemberData);
-    res
+    return res
       .status(httpStatus.CREATED)
-      .send({ message: "Created", data: newstaffMember });
+      .send({ message: "New staffmember created", data: newstaffMember });
   } catch (error) {
     console.error("Error creating staffMember:", error);
-    res
+    return res
       .status(httpStatus.INTERNAL_SERVER_ERROR)
       .send({ message: "Internal Server Error" });
   }
