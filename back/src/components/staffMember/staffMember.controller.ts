@@ -2,31 +2,7 @@ import { Request, Response } from "express";
 
 import httpStatus from "http-status";
 
-import {
-  updateStaffMemberInService,
-  deleteStaffMemberInService,
-} from "./staffMember.service";
-
-import { StaffMemberInterface } from "./staffMember.interface";
-
-const updateStaffMember = async (req: Request, res: Response) => {
-  try {
-    const staffMemberId: string = req.params.id;
-    const staffMemberData: StaffMemberInterface = req.body;
-    const staffMemberUpdating: boolean = await updateStaffMemberInService(
-      staffMemberId,
-      staffMemberData
-    );
-    res
-      .status(httpStatus.OK)
-      .send({ message: "StaffMember updated", data: staffMemberUpdating });
-  } catch (error) {
-    console.error("Error updating staffMember:", error);
-    res
-      .status(httpStatus.INTERNAL_SERVER_ERROR)
-      .send({ message: "Internal Server Error" });
-  }
-};
+import { deleteStaffMemberInService } from "./staffMember.service";
 
 const deleteStaffMember = async (req: Request, res: Response) => {
   try {
@@ -42,4 +18,4 @@ const deleteStaffMember = async (req: Request, res: Response) => {
   }
 };
 
-export { updateStaffMember, deleteStaffMember };
+export { deleteStaffMember };

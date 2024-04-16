@@ -34,15 +34,14 @@ const readStaffMemberInService = async (
 const updateStaffMemberInService = async (
   staffMemberId: string,
   staffMemberData: StaffMemberInterface
-): Promise<boolean> => {
+): Promise<StaffMemberInterface> => {
   try {
     const updatedstaffMember = await StaffMemberModel.update(staffMemberData, {
       where: { id: staffMemberId },
+      returning: true,
     });
-    console.log(updatedstaffMember);
-    const updateCondition: boolean = updatedstaffMember[0] === 1;
-    if (!updateCondition) throw new Error("StaffMember not found");
-    return updateCondition;
+    console.log(updatedstaffMember[0]);
+    return updatedstaffMember;
   } catch (error) {
     console.error("DB Error updating staffMember:", error);
     throw error;
