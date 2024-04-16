@@ -24,7 +24,6 @@ const readStaffMemberInService = async (
     const staffMember: StaffMemberInterface = await StaffMemberModel.findByPk(
       id
     );
-    console.log(staffMember);
     return staffMember;
   } catch (error) {
     console.error("DB Error reading staffMember:", error);

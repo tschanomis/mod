@@ -7,6 +7,7 @@ import { StaffMemberInterface } from "./staffMember.interface";
 const StaffMemberModel = sequelize.define<StaffMemberInterface>("StaffMember", {
   id: {
     primaryKey: true,
+    autoIncrement: true,
     type: DataTypes.INTEGER,
   },
   firstName: {

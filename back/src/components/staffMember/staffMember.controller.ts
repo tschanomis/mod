@@ -2,60 +2,12 @@ import { Request, Response } from "express";
 
 import httpStatus from "http-status";
 
-import { checkingRequiredFields } from "../../core/utils/checkingRequiredFields/checkingRequiredFields";
-
 import {
-  createStaffMemberInService,
-  readStaffMemberInService,
   updateStaffMemberInService,
   deleteStaffMemberInService,
 } from "./staffMember.service";
 
 import { StaffMemberInterface } from "./staffMember.interface";
-
-const createStaffMember = async (req: Request, res: Response) => {
-  try {
-    const requiredFields = ["firstname", "lastname"];
-    const checkedRequiredFields = checkingRequiredFields(
-      requiredFields,
-      req.body
-    );
-
-    if (checkedRequiredFields) {
-      return res
-        .status(httpStatus.BAD_REQUEST)
-        .send({ message: "Missing fields", errors: checkedRequiredFields });
-    }
-
-    const staffMemberData: StaffMemberInterface = req.body;
-    const newstaffMember: StaffMemberInterface =
-      await createStaffMemberInService(staffMemberData);
-    return res
-      .status(httpStatus.CREATED)
-      .send({ message: "New staffmember created", data: newstaffMember });
-  } catch (error) {
-    console.error("Error creating staffMember:", error);
-    return res
-      .status(httpStatus.INTERNAL_SERVER_ERROR)
-      .send({ message: "Internal Server Error" });
-  }
-};
-
-const readStaffMember = async (req: Request, res: Response) => {
-  try {
-    const staffMemberId: string = req.params.id;
-    const staffMemberReading: StaffMemberInterface =
-      await readStaffMemberInService(staffMemberId);
-    res
-      .status(httpStatus.OK)
-      .send({ message: "Read", data: staffMemberReading });
-  } catch (error) {
-    console.error("Error reading staffMember:", error);
-    res
-      .status(httpStatus.INTERNAL_SERVER_ERROR)
-      .send({ message: "Internal Server Error" });
-  }
-};
 
 const updateStaffMember = async (req: Request, res: Response) => {
   try {
@@ -90,9 +42,4 @@ const deleteStaffMember = async (req: Request, res: Response) => {
   }
 };
 
-export {
-  createStaffMember,
-  readStaffMember,
-  updateStaffMember,
-  deleteStaffMember,
-};
+export { updateStaffMember, deleteStaffMember };

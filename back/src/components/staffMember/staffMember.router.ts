@@ -1,11 +1,9 @@
 import { Router } from "express";
 
-import {
-  createStaffMember,
-  readStaffMember,
-  updateStaffMember,
-  deleteStaffMember,
-} from "./staffMember.controller";
+import { createStaffMember } from "./createStaffMember/createStaffMember.controller";
+import { readStaffMember } from "./readStaffMember/readStaffMember.controller";
+
+import { updateStaffMember, deleteStaffMember } from "./staffMember.controller";
 
 const router: Router = Router();
 
