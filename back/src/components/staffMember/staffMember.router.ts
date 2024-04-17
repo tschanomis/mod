@@ -3,8 +3,7 @@ import { Router } from "express";
 import { createStaffMember } from "./createStaffMember/createStaffMember.controller";
 import { readStaffMember } from "./readStaffMember/readStaffMember.controller";
 import { updateStaffMember } from "./updateStaffMember/updateStaffMember.controller";
-
-import { deleteStaffMember } from "./staffMember.controller";
+import { deleteStaffMember } from "./deleteStaffMember/deleteStaffMember.controller";
 
 const router: Router = Router();
 

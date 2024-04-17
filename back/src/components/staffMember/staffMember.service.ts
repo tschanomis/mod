@@ -52,8 +52,7 @@ const deleteStaffMemberInService = async (id: string): Promise<boolean> => {
       where: { id: id },
     });
     console.log(deletedstaffMember);
-    if (deletedstaffMember === 0) throw new Error("StaffMember not found");
-    return true;
+    return deletedstaffMember === 1;
   } catch (error) {
     console.error("DB Error deleting staffMember:", error);
     throw error;
