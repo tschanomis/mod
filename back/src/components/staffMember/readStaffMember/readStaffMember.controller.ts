@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import httpStatus from "http-status";
 
-import { readStaffMemberInService } from "../staffMember.service";
+import { readStaffMemberDbService } from "./readStaffMember.dbService";
 
 import { StaffMemberInterface } from "../staffMember.interface";
 
@@ -10,7 +10,7 @@ export const readStaffMember = async (req: Request, res: Response) => {
   try {
     const staffMemberId: string = req.params.id;
     const staffMemberReading: StaffMemberInterface =
-      await readStaffMemberInService(staffMemberId);
+      await readStaffMemberDbService(staffMemberId);
 
     const status = staffMemberReading ? httpStatus.OK : httpStatus.NOT_FOUND;
     const data = staffMemberReading
