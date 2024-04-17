@@ -4,7 +4,7 @@ import httpStatus from "http-status";
 
 import { checkingRequiredFields } from "../../../core/utils/checkingRequiredFields/checkingRequiredFields";
 
-import { createStaffMemberInService } from "../staffMember.service";
+import { createStaffMemberDbService } from "./createStaffMember.dbService";
 
 import { StaffMemberInterface } from "../staffMember.interface";
 
@@ -24,7 +24,7 @@ export const createStaffMember = async (req: Request, res: Response) => {
 
     const staffMemberData: StaffMemberInterface = req.body;
     const newstaffMember: StaffMemberInterface =
-      await createStaffMemberInService(staffMemberData);
+      await createStaffMemberDbService(staffMemberData);
 
     return res
       .status(httpStatus.CREATED)
