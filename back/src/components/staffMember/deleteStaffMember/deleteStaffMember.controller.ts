@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 
 import httpStatus from "http-status";
 
-import { deleteStaffMemberInService } from "../staffMember.service";
+import { deleteStaffMemberDbService } from "./deleteStaffMember.dbService";
 
 export const deleteStaffMember = async (req: Request, res: Response) => {
   try {
     const staffMemberId: string = req.params.id;
-    const staffMemberDeleting = await deleteStaffMemberInService(staffMemberId);
+    const staffMemberDeleting = await deleteStaffMemberDbService(staffMemberId);
 
     const status = staffMemberDeleting
       ? httpStatus.ACCEPTED
