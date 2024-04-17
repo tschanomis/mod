@@ -26,7 +26,7 @@ export const updateStaffMember = async (req: Request, res: Response) => {
     return res.status(status).send(data);
   } catch (error) {
     console.error("Error updating staffMember:", error);
-    res
+    return res
       .status(httpStatus.INTERNAL_SERVER_ERROR)
       .send({ message: "Internal Server Error" });
   }
