@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import httpStatus from "http-status";
 
-import { updateStaffMemberInService } from "../staffMember.service";
+import { updateStaffMemberDbService } from "./updateStaffMember.dbServices";
 
 import { StaffMemberInterface } from "../staffMember.interface";
 
@@ -11,7 +11,7 @@ export const updateStaffMember = async (req: Request, res: Response) => {
     const staffMemberId: string = req.params.id;
     const staffMemberData: StaffMemberInterface = req.body;
 
-    const staffMemberUpdating: Array<number> = await updateStaffMemberInService(
+    const staffMemberUpdating: Array<number> = await updateStaffMemberDbService(
       staffMemberId,
       staffMemberData
     );
