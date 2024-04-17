@@ -11,14 +11,17 @@ export const updateStaffMember = async (req: Request, res: Response) => {
     const staffMemberId: string = req.params.id;
     const staffMemberData: StaffMemberInterface = req.body;
 
-    const staffMemberUpdating: StaffMemberInterface =
-      await updateStaffMemberInService(staffMemberId, staffMemberData);
+    const staffMemberUpdating: Array<number> = await updateStaffMemberInService(
+      staffMemberId,
+      staffMemberData
+    );
 
     const response = staffMemberUpdating[0] === 1;
+
     const status = response ? httpStatus.OK : httpStatus.NOT_FOUND;
-    const data = response
-      ? { message: "Staff member updated", data: staffMemberUpdating }
-      : { message: "Staff member not found" };
+    const data = {
+      message: `Staff member ${response ? "updated" : "not found"}`,
+    };
 
     return res.status(status).send(data);
   } catch (error) {
